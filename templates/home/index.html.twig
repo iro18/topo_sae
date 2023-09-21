@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Topo de la SAE Carcassonne{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Topo de la SAE de Carcassonne</h1>
+
+    <p> Ce site est là uniquement pour partager les avis et cotations proposées par les utilisateurs de la SAE de Carcassonne. </p>
+
+    <div class='container-inner'>
+        <div class='statsontheleft'>
+            <h3> Statistiques des voies de la SAE </h3>
+            <p> La salle comporte actuellement <b>{{ routes|length }} voies</b> </p>
+            <h4> Répartition des voies :</h4>
+            <ul>
+             {% for key, stat in statsRoute %}
+                <li>{{ stat }} voies dans le {{ key[1:2] }}</li>
+             {% endfor %}
+             </ul>
+        </div>
+        <div class='infos-right'>
+                <table>
+                    <tr><th> Nom de voie </th><th>Relai</th><th>Couleur de voie</th><th>Cotation</th><th>+</th><th>-</th></tr>
+                      {% for data in routes %}
+                        <tr>
+                            <td><a href="{{path('voir_route',{id : data.id}) }}">{{ data.name }}</a></td>
+                            <td>{{ data.relai }}</td>
+                            <td>{{ data.couleur }}</td>
+                            <td>{{ data.cotation }}</td>
+                            <td><a href="#">{{ data.aime }} +</a></td>
+                            <td><a href="#">{{ data.aimepas }} -</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+        </div>
+    </div>
+  
+</div>
+{% endblock %}

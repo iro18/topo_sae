@@ -1,0 +1,25 @@
+{# templates/admin/my-custom-page.html.twig #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Admin du topo SAE{% endblock %}
+{% block page_actions %}
+    <a class="btn btn-primary" href="...">Some Action</a>
+{% endblock %}
+
+{% block main %}
+
+    <h3> La SAE comporte actuellement un total de : {{ voies|length }} voies </h3>
+    <table class="datagrid">
+        <thead>
+            <tr>
+                <td>Some Column</td>
+                <td>Another Column</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voie in voies %}
+            <tr><td>{{ voie.name }}</td><td></td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

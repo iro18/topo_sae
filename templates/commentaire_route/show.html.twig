@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommentaireRoute{% endblock %}
+
+{% block body %}
+    <h1>CommentaireRoute</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commentaire_route.id }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ commentaire_route.Prenom }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ commentaire_route.Commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commentaire_route_index') }}">back to list</a>
+
+    <a href="{{ path('app_commentaire_route_edit', {'id': commentaire_route.id}) }}">edit</a>
+
+    {{ include('commentaire_route/_delete_form.html.twig') }}
+{% endblock %}
