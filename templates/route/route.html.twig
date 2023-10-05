@@ -19,12 +19,13 @@
    <p> <B>Description de la voie :</B> {{route.description}} </p>
 
    <h3>Commentaires de la voie</h3>
-   {% for unique in commentaires %}
-        <div> <p>{{unique.prenom}}</p>
-        <p>{{unique.commentaire|raw}}</p>
-       </div>
-    {% endfor %}
-
+   <div class="commentaires-route">
+     {% for unique in commentaires %}
+          <div class='commentaire-route'> <p class=commentaire-name>De : {{unique.prenom}}</p>
+          <p class="commentaire-desc"> {{unique.commentaire|raw}}</p>
+         </div>
+      {% endfor %}
+  </div>
        
   
 </div>

@@ -1,37 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CommentaireRoute index{% endblock %}
+{% block title %}Hello CommentaireRouteController!{% endblock %}
 
 {% block body %}
-    <h1>CommentaireRoute index</h1>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Prenom</th>
-                <th>Commentaire</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for commentaire_route in commentaire_routes %}
-            <tr>
-                <td>{{ commentaire_route.id }}</td>
-                <td>{{ commentaire_route.Prenom }}</td>
-                <td>{{ commentaire_route.Commentaire }}</td>
-                <td>
-                    <a href="{{ path('app_commentaire_route_show', {'id': commentaire_route.id}) }}">show</a>
-                    <a href="{{ path('app_commentaire_route_edit', {'id': commentaire_route.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+<div class="example-wrapper">
+    <h1>Liste des commentaires</h1>
+
+    This friendly message is coming from:
+    <ul>
+        {% for comment in commentaires %}
+        	<li>{{ comment.commentaire }} </li>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_commentaire_route_new') }}">Create new</a>
+    </ul>
+</div>
 {% endblock %}

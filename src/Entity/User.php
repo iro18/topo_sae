@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -28,6 +30,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\OneToMany(mappedBy: 'user_commentaire', targetEntity: CommentaireRoute::class)]
+    private Collection $commentaireRoutes;
+
+    #[ORM\Column(length: 255)]
+    private ?string $pseudonyme = null;
+
+    public function __construct()
+    {
+        $this->commentaireRoutes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -98,4 +111,52 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    /**
+     * @return Collection<int, CommentaireRoute>
+     */
+    public function getCommentaireRoutes(): Collection
+    {
+        return $this->commentaireRoutes;
+    }
+
+    public function addCommentaireRoute(CommentaireRoute $commentaireRoute): static
+    {
+        if (!$this->commentaireRoutes->contains($commentaireRoute)) {
+            $this->commentaireRoutes->add($commentaireRoute);
+            $commentaireRoute->setUserCommentaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaireRoute(CommentaireRoute $commentaireRoute): static
+    {
+        if ($this->commentaireRoutes->removeElement($commentaireRoute)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaireRoute->getUserCommentaire() === $this) {
+                $commentaireRoute->setUserCommentaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+        public function __toString()
+    {
+        return $this->getPseudonyme();
+    }
+
+        public function getPseudonyme(): ?string
+        {
+            return $this->pseudonyme;
+        }
+
+        public function setPseudonyme(string $pseudonyme): static
+        {
+            $this->pseudonyme = $pseudonyme;
+
+            return $this;
+        }
+    
 }

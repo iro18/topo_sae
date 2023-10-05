@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Route as RouteSae;
+use App\Entity\User;
+use App\Entity\Bloc;
 use App\Entity\CommentaireRoute;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -55,8 +57,11 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home')->setPermission('ROLE_USER'),
 
             MenuItem::section('Topo de la salle'),
-            MenuItem::linkToCrud('Routes', 'fa fa-tags', RouteSae::class)->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Routes', 'fa fa-location-pin', RouteSae::class)->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Blocs', 'fa fa-bolt', Bloc::class)->setPermission('ROLE_ADMIN'),
             MenuItem::linkToCrud('Commentaires', 'fa fa-tags', CommentaireRoute::class)->setPermission('ROLE_USER'),
+            MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)->setPermission('ROLE_ADMIN'),
+
         ];
     }
 }

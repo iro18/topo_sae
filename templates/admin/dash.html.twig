@@ -3,7 +3,7 @@
 
 {% block content_title %}Admin du topo SAE{% endblock %}
 {% block page_actions %}
-    <a class="btn btn-primary" href="...">Some Action</a>
+  <!--  <a class="btn btn-primary" href="...">Some Action</a> -->
 {% endblock %}
 
 {% block main %}
@@ -12,13 +12,14 @@
     <table class="datagrid">
         <thead>
             <tr>
-                <td>Some Column</td>
-                <td>Another Column</td>
+                <th>Voie</th>
+                <th>Cotation</th>
+                <th>Relai</th>
             </tr>
         </thead>
         <tbody>
         {% for voie in voies %}
-            <tr><td>{{ voie.name }}</td><td></td></tr>
+            <tr><td>{{ voie.name }}</td><td>{{ voie.cotation }}</td><td>{{ voie.relai }}</td></tr>
         {% endfor %}
         </tbody>
     </table>

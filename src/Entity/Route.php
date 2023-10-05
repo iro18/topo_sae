@@ -43,6 +43,9 @@ class Route
     #[ORM\OneToMany(mappedBy: 'commentaires_route', targetEntity: CommentaireRoute::class)]
     private Collection $commentaires;
 
+    #[ORM\Column]
+    private ?bool $isActive = false;
+
     public function __construct()
     {
         $this->commentaireRoutes = new ArrayCollection();
@@ -201,6 +204,18 @@ class Route
     public function __toString()
     {
         return $this->getName();
+    }
+
+    public function isIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): static
+    {
+        $this->isActive = $isActive;
+
+        return $this;
     }
 
 }
