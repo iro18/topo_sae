@@ -12,8 +12,8 @@ Actually Fonctionnal :
 - Petit système de Stats des voies
 
 Here is the TODO (Main): 
-- ~~ Ajout de formulaire d'enregistrement + connexion ~~ 
-- Gestion des commentaires par utilisateur (modifier les entités)
+- ~~Ajout de formulaire d'enregistrement + connexion~~ 
+- ~~Gestion des commentaires par utilisateur (modifier les entités)~~
 - Add Password Lost on Login Page
 - Gestion des Likes en Ajax ou React
 - Create Unit Test
