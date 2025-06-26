@@ -37,7 +37,7 @@ public function login(AuthenticationUtils $authenticationUtils): Response
             // the title visible above the login form (define this option only if you are
             // rendering the login template in a regular Symfony controller; when rendering
             // it from an EasyAdmin Dashboard this is automatically set as the Dashboard title)
-            'page_title' => 'Connexion à Menu Carte',
+            'page_title' => 'Connexion à TOPO SAE Carcassonne',
 
             // the string used to generate the CSRF token. If you don't define
             // this parameter, the login form won't include a CSRF token

@@ -61,6 +61,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Blocs', 'fa fa-bolt', Bloc::class)->setPermission('ROLE_ADMIN'),
             MenuItem::linkToCrud('Commentaires', 'fa fa-tags', CommentaireRoute::class)->setPermission('ROLE_USER'),
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class)->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Mon compte', 'fa fa-user', User::class)->setPermission('ROLE_USER'),
 
         ];
     }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}{{ route.name }} - Topo SAE {% endblock %}
 
 {% block body %}
 <style>
@@ -12,11 +12,17 @@
     <h1>Nom de la voie : {{ route.name }}</h1>
 
     <p>Page descriptive d'une voie de la SAE, vous trouverez des informations complémentaires si elles existent comme une photo de la voie, ou des commentaires laissés par les grimpeurs </p>
+    <div class="intro-route">
+       <table class="view-route">
+        <thead><th>Cotation</th><th>Couleur</th><th>Relai</th></thead>
+        <tbody><tr><td>{{  route.cotation  }}</td><td>{{ route.couleur }}</td><td>{{route.relai}}</td></tr></tbody>
+       </table>
+       <div class="description-intro">
+          <p> <B>Description de la voie :</B> {{route.description|raw}} </p>
+       </div>
+    </div>
+
    
-   <h3> Cotation de la voie : {{  route.cotation  }} </h3>
-   <h3>Couleur de la voie : {{ route.couleur }} </h3>
-   <h4>Relai de la voie : {{route.relai}}</h4>
-   <p> <B>Description de la voie :</B> {{route.description}} </p>
 
    <h3>Commentaires de la voie</h3>
    <div class="commentaires-route">

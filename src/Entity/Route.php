@@ -46,10 +46,15 @@ class Route
     #[ORM\Column]
     private ?bool $isActive = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ouvreur = null;
+
     public function __construct()
     {
         $this->commentaireRoutes = new ArrayCollection();
         $this->commentaires = new ArrayCollection();
+        $this->aime = 0;
+        $this->aimepas = 0;
     }
 
     public function getId(): ?int
@@ -140,7 +145,11 @@ class Route
 
         return $this;
     }
-
+    public function incrementAime(): self
+    {
+        $this->aime++;
+        return $this;
+    }
     /**
      * @return Collection<int, CommentaireRoute>
      */
@@ -214,6 +223,18 @@ class Route
     public function setIsActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getOuvreur(): ?string
+    {
+        return $this->ouvreur;
+    }
+
+    public function setOuvreur(?string $ouvreur): static
+    {
+        $this->ouvreur = $ouvreur;
 
         return $this;
     }

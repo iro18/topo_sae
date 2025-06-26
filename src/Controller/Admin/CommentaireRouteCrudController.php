@@ -55,7 +55,7 @@ class CommentaireRouteCrudController extends AbstractCrudController
         yield TextField::new('prenom') ;
         yield  TextEditorField::new('commentaire');
         yield  AssociationField::new('commentaires_route');
-        yield  DateTimeField::new('createAt');
+        yield  DateTimeField::new('createAt')->hideOnForm();
         yield  AssociationField::new('user_commentaire')->hideOnForm()/*->setQueryBuilder(
                           fn(QueryBuilder $queryBuilder) => $queryBuilder->andWhere('entity.id = :user')
                                        ->setParameter('user', $this->getUser()) )*/

@@ -23,20 +23,48 @@
         </div>
         <div class='infos-right'>
                 <table>
-                    <tr><th> Nom de voie </th><th>Relai</th><th>Couleur de voie</th><th>Cotation</th><th>+</th><th>-</th></tr>
+                    <tr><th> Nom de voie </th><th>Relai</th><th>Couleur de voie</th><th>Cotation</th><th>+</th></tr>
                       {% for data in routes %}
                         <tr>
                             <td><a href="{{path('voir_route',{id : data.id}) }}">{{ data.name }}</a></td>
                             <td>{{ data.relai }}</td>
                             <td>{{ data.couleur }}</td>
                             <td>{{ data.cotation }}</td>
-                            <td><a href="#">{{ data.aime }} +</a></td>
-                            <td><a href="#">{{ data.aimepas }} -</a></td>
+                            <td><div id="route-{{ data.id }}" data-id="{{ data.id }}"><span class="aime-count">{{ data.aime }}</span>{% if is_granted('IS_AUTHENTICATED_FULLY') %} <button class="increment-btn">♥</button></div>{% endif %}</td>
+                           
+                            
+                         
                         </tr>
                     {% endfor %}
                 </table>
         </div>
     </div>
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.increment-btn').forEach(function (button) {
+            button.addEventListener('click', function () {
+                const routeDiv = this.closest('div');
+                const routeId = routeDiv.dataset.id;
+
+                fetch(`/route/${routeId}/aime`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.aime !== undefined) {
+                        routeDiv.querySelector('.aime-count').textContent = data.aime;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
   
 </div>
 {% endblock %}

@@ -45,4 +45,14 @@ class RouteRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findActiveRoutes(): array
+	{
+    return $this->createQueryBuilder('r')
+        ->where('r.isActive = :active')
+        ->setParameter('active', true)
+        ->getQuery()
+        ->getResult();
+	}
+
 }

@@ -24,3 +24,25 @@ td,th{
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
+button.increment-btn{
+	background: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+.intro-route{
+	display: flex;
+	gap:50px;
+}
+.view-route{
+	    border: 1px solid white;
+    padding: 24px;
+}
+.view-route thead tr{
+    background: #3f3f3f;
+}
+.view-route th,.view-route td{
+	padding: 7px 10px;
+}
+.view-route td{
+	background-color: black
+}

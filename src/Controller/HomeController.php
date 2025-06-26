@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(EntityManagerInterface $em): Response
     {
-    	$routes = $em->getRepository(RouteSae::class)->findAll();
+    	$routes = $em->getRepository(RouteSae::class)->findActiveRoutes();
     	$statsRoutes = [
     		'R4' => 0,
     		'R5' => 0,
